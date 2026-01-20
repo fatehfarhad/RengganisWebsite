@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Nasi Ayam geprek free minum",
     "desc": "Ayam goreng renyah yang di geprek dan diberi sambal racikan pedas nikmat.",
-    "price": 15000,
+    "price": 17000,
     "promo_price": 13000,
     "img": "img/Ayamgeprek.png",
     "category": "makanan-berat, paket-promo",
@@ -275,3 +275,4 @@
     "promo": false
   }
 ]
+
