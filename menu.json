@@ -1,0 +1,277 @@
+[
+  {
+    "id": 1,
+    "name": "Nasi Ayam geprek free minum",
+    "desc": "Ayam goreng renyah yang di geprek dan diberi sambal racikan pedas nikmat.",
+    "price": 15000,
+    "promo_price": 13000,
+    "img": "img/Ayamgeprek.png",
+    "category": "makanan-berat, paket-promo",
+    "promo": true,
+    "label": "PROMO"
+  },
+  {
+    "id": 2,
+    "name": "Paket ayam crispy free minum",
+    "desc": "Ayam goreng renyah dengan balutan tepung gurih serta diberi sambal tomat segar",
+    "price": 15000,
+    "img": "img/ayamcrispy.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 3,
+    "name": "Paket udang geprek free minum",
+    "desc": "Udang goreng segar digeprek dengan sambal pedas mantap",
+    "price": 16000,
+    "img": "img/udanggeprek.png",
+    "category": "makanan-ringan",
+    "promo": false
+  },
+  {
+    "id": 4,
+    "name": "Paket udang crispy free minum",
+    "desc": "Udang goreng tepung kriuk dengan rasa gurih yang nikmat",
+    "price": 16000,
+    "img": "img/udangcrispy.jpg",
+    "category": "makanan-ringan",
+    "promo": false,
+    "label": "New"
+  },
+  {
+    "id": 5,
+    "name": "Lalapan ayam asam manis + nasi",
+    "desc": "Ayam goreng dengan saus asam manis segar, lengkap dengan nasi dan lalapan",
+    "price": 16000,
+    "img": "img/ayamasammanis.jpg",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 6,
+    "name": "Udang asam manis + nasi",
+    "desc": "Udang goreng berpadu saus asam manis, disajikan dengan nasi hangat yang nikmat",
+    "price": 16000,
+    "img": "img/udangasammanis.png",
+    "category": "makanan-ringan",
+    "promo": false
+  },
+  {
+    "id": 7,
+    "name": "Lalapan ayam bakar + nasi",
+    "desc": "Ayam bakar bumbu manis gurih, ditemani nasi hangat dan lalapan segar",
+    "price": 16000,
+    "img": "img/ayambakar.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 8,
+    "name": "Lalapan ayam goreng + nasi",
+    "desc": "Ayam goreng renyah berbumbu gurih lezat, lengkap dengan nasi dan lalapan",
+    "price": 16000,
+    "img": "img/ayamlalapan.jpg",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 9,
+    "name": "Lalapan lele goreng (ISI 2) + nasi",
+    "desc": "Lele goreng renyah dengan cita rasa gurih, ditemani nasi hangat dan lalapan segar",
+    "price": 15000,
+    "img": "img/lelegoreng.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 10,
+    "name": "Lalapan lele bakar (ISI 2) + nasi",
+    "desc": "Lele bakar berbumbu khas, ditemani nasi dan lalapan segar",
+    "price": 15000,
+    "img": "img/lelebakar.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 11,
+    "name": "Lalapan kakap goreng + nasi",
+    "desc": "Kakap goreng renyah berbumbu gurih, disajikan dengan nasi hangat dan lalapan segar.",
+    "price": 26000,
+    "img": "img/kakapgoreng.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 12,
+    "name": "Lalapan kakap bakar + nasi",
+    "desc": "Kakap bakar bumbu spesial, disajikan dengan nasi dan lalapan.",
+    "price": 26000,
+    "img": "img/kakapbakar.jpg",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 13,
+    "name": "Lalapan kerapu goreng + nasi",
+    "desc": "Kerapu goreng garing, lengkap dengan nasi hangat dan lalapan segar",
+    "price": 28000,
+    "promo_price": 25000,
+    "img": "img/krapu.jpeg",
+    "category": "makanan-berat, Paket-promo",
+    "promo": true
+  },
+  {
+    "id": 14,
+    "name": "Lalapan kerapu bakar + nasi",
+    "desc": "Kerapu bakar berbumbu gurih, disajikan dengan nasi dan lalapan",
+    "price": 26000,
+    "img": "img/krapubakar.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 15,
+    "name": "Lalapan gurami goreng + nasi",
+    "desc": "Gurami goreng gurih renyah, disajikan dengan nasi hangat dan lalapan segar.",
+    "price": 26000,
+    "img": "img/guramigoreng.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 16,
+    "name": "Lalapan gurami crispy + nasi",
+    "desc": "Gurami segar berbalut tepung kriuk, lengkap dengan nasi hangat dan lalapan.",
+    "price": 26000,
+    "img": "img/guramicrispy.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 14,
+    "name": "Lalapan gurami bakar + nasi",
+    "desc": "Gurami bakar berbumbu khas, ditemani nasi hangat dan lalapan segar.",
+    "price": 26000,
+    "img": "img/guramibakar.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 15,
+    "name": "Lalapan gurami asam manis + nasi",
+    "desc": "Gurami goreng dengan saus asam manis segar, disajikan bersama nasi dan lalapan.",
+    "price": 28000,
+    "img": "img/guramiasemmanis.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 16,
+    "name": "Lalapan tempe penyet + nasi",
+    "desc": "Tempe goreng hangat dipenyet dengan sambal tomat segar yang pedas gurih bikin nagih.",
+    "price": 8000,
+    "img": "img/tempepenyet.png",
+    "category": "makanan-ringan",
+    "promo": false
+  },
+  {
+    "id": 17,
+    "name": "Gurami paket (4-5 ons) + 2 nasi + 2 lalapan",
+    "desc": "Gurami dengan paket 4-5 ons dengan nasi hangat dan 2 lalapan yang nikmat.",
+    "price": 42000,
+    "img": "img/guramicrispy.png",
+    "category": "makanan-berat",
+    "promo": false
+  },
+  {
+    "id": 18,
+    "name": "Geprek jumbo + nasi + minum",
+    "desc": "Geprek versi jumbo yang di santap dengan nasi hangat dan minuman yang menyegarkan",
+    "price": 25000,
+    "promo_price": 20000,
+    "img": "img/Geprekk.jpg",
+    "category": "makanan-berat, paket-promo",
+    "promo": true
+  },
+  {
+    "id": 19,
+    "name": "Teh hangat",
+    "desc": "Teh hangat manis berbahan teh pilihan",
+    "price": 3000,
+    "img": "img/tehhangat.png",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 20,
+    "name": "Es teh manis",
+    "desc": "Es teh manis berbahan teh pilihan dengan rasa yang manis segar",
+    "price": 3000,
+    "img": "img/esteh.png",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 21,
+    "name": "Es jeruk manis",
+    "desc": "Es jeruk manis berbahan jeruk segar pilihan dengan rasa yang manis segar",
+    "price": 3000,
+    "img": "img/jeruk.png",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 22,
+    "name": "Kopi",
+    "desc": "Kopi hangat dengan bahan kopi pilihan dengan rasa yang nikmat",
+    "price": 5000,
+    "img": "img/Kopi.jpg",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 23,
+    "name": "Jus jeruk",
+    "desc": "Jus jeruk manis berbahan jeruk segar pilihan dengan rasa yang manis segar",
+    "price": 5000,
+    "img": "img/jusjeruk.jpg",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 24,
+    "name": "Jeruk hangat",
+    "desc": "Jeruk manis berbahan jeruk segar pilihan dengan rasa yang manis segar",
+    "price": 5000,
+    "img": "img/jerukhangat.png",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 25,
+    "name": "Soda Gembira",
+    "desc": "Minuman Bersoda dengan susu kental manis yang menyegarkan",
+    "price": 10000,
+    "img": "img/Sodagembira.jpg",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 26,
+    "name": "Jus Melon",
+    "desc": "Jus melon segar berbahan melon pilihan dengan rasa yang manis segar",
+    "price": 5000,
+    "img": "img/jusmelon.jpg",
+    "category": "minuman",
+    "promo": false
+  },
+  {
+    "id": 27,
+    "name": "Jus Nanas",
+    "desc": "Jus nanas segar berbahan nanas pilihan dengan ras yang menyegarkan",
+    "price": 5000,
+    "img": "img/Jusnanas.jpg",
+    "category": "minuman",
+    "promo": false
+  }
+]

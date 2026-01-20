@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesehan Rengganis - Pesan Makanan dengan Mudah</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --primary: #f59e0b;
+        --secondary: #f97316;
+        --dark: #1e293b;
+        --light: #f8fafc;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f1f5f9;
+      }
+
+      .food-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-btn.active {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      .cart-item {
+        transition: all 0.3s ease;
+      }
+
+      .cart-item:hover {
+        background-color: #f8fafc;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <img
+            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d2df500e-f9cc-4952-9a2f-8e6a89393061.png"
+            alt="Logo Toko Makanan Online dengan ilustrasi makanan lezat dalam warna orange dan putih"
+            class="h-12 mr-3"
+          />
+          <h1 class="text-xl font-bold text-gray-800 hidden md:block">
+            Warung Lesehan Rengganis
+          </h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button
+            id="cartBtn"
+            class="relative p-2 rounded-full hover:bg-gray-100"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            <span
+              id="cartCount"
+              class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden"
+              >0</span
+            >
+          </button>
+          <button class="p-2 rounded-full hover:bg-gray-100">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-gray-700"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      class="bg-gradient-to-r from-orange-400 to-orange-600 text-white py-12"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Nikmati Menu Lezat Kami Sekarang Juga!
+        </h2>
+        <p class="text-xl mb-6">
+          Pesan makanan favoritmu dengan mudah dan cepat
+        </p>
+        <div class="max-w-md mx-auto relative">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari menu makanan..."
+            class="w-full px-4 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-300"
+          />
+          <button
+            id="searchButton"
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="container mx-auto px-4 py-8">
+      <div class="flex overflow-x-auto space-x-3 pb-2">
+        <button
+          class="category-btn active px-4 py-2 rounded-full bg-white shadow-sm whitespace-nowrap"
+        >
+          Semua Menu
+        </button>
+        <button
+          class="category-btn px-4 py-2 rounded-full bg-white shadow-sm whitespace-nowrap"
+        >
+          Makanan Berat
+        </button>
+        <button
+          class="category-btn px-4 py-2 rounded-full bg-white shadow-sm whitespace-nowrap"
+        >
+          Makanan Ringan
+        </button>
+        <button
+          class="category-btn px-4 py-2 rounded-full bg-white shadow-sm whitespace-nowrap"
+        >
+          Minuman
+        </button>
+        <button
+          class="category-btn px-4 py-2 rounded-full bg-white shadow-sm whitespace-nowrap"
+        >
+          Paket Promo
+        </button>
+      </div>
+    </section>
+
+    <!-- Menu Items -->
+    <div
+      id="menuContainer"
+      class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 px-3 pb-4"
+    ></div>
+    <!-- End of menu items -->
+
+    <!-- Cart Modal -->
+    <div
+      id="cartModal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-20 flex items-center justify-center hidden"
+    >
+      <div
+        class="bg-white rounded-lg w-full max-w-md max-h-[80vh] overflow-y-auto"
+      >
+        <div class="p-4 border-b flex justify-between items-center">
+          <h3 class="text-xl font-bold">Keranjang Pesanan</h3>
+          <button id="closeCartBtn" class="text-gray-500 hover:text-gray-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div id="cartItems" class="p-4">
+          <!-- Cart items will be added here dynamically -->
+          <div class="text-center py-8">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12 mx-auto text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            <p class="text-gray-500 mt-2">Keranjang masih kosong</p>
+          </div>
+        </div>
+        <div class="p-4 border-t">
+          <div class="mb-4">
+            <label
+              for="deliveryAddress"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Alamat Pengiriman:</label
+            >
+            <input
+              type="text"
+              id="deliveryAddress"
+              class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
+              placeholder="Masukkan alamat lengkap untuk menghitung ongkir"
+            />
+            <button
+              id="shareLocationBtn"
+              class="mt-2 w-full bg-green-100 hover:bg-green-200 text-green-700 py-2 px-4 rounded-md"
+              type="button"
+            >
+              Share Lokasi Saya
+            </button>
+            <button
+              id="calculateShippingBtn"
+              class="mt-2 w-full bg-orange-100 hover:bg-orange-200 text-orange-700 py-2 px-4 rounded-md"
+            >
+              Hitung Ongkir
+            </button>
+          </div>
+          <div id="shippingCostContainer" class="hidden">
+            <div class="flex justify-between mb-1">
+              <span>Ongkos Kirim:</span>
+              <span id="shippingCost">Rp 3.000</span>
+            </div>
+          </div>
+          <div id="discountContainer" class="hidden">
+            <div class="flex justify-between mb-1 text-green-600">
+              <span>Diskon:</span>
+              <span id="discountAmount">Rp 0</span>
+            </div>
+          </div>
+          <div class="flex justify-between mb-4 font-bold">
+            <span>Total:</span>
+            <span id="cartTotal" class="text-orange-500">Rp 0</span>
+          </div>
+          <button
+            id="checkoutBtn"
+            class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Lanjutkan ke WhatsApp (+6281358523305)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+     <footer class="bg-white border-t mt-12">
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h4 class="font-bold text-lg mb-4">Alamat Warung</h4>
+            <p class="text-gray-600">
+              Jalan flamboyan timurnya jembatan kembar atau timurnya mie gacoan
+              kraksaan.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-4">Jam Operasional</h4>
+            <p class="text-gray-600">
+               Jum'at - Rabu <br />09:00 - 21:00 WIB <br/>
+             <pre class="text-gray-600">Kamis libur</pre>
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-4"> Mitra kami</h4>
+            <div class="flex space-x-4">
+              <!-- Shopee -->
+              <a href="https://shopee.co.id/universal-link/now-food/shop/22188141?deep_and_deferred=1&shareChannel=copy_link" class="text-gray-600 hover:opacity-90" title="Shopee">
+                <img src="img/shopee.jpeg" alt="Shopee" class="h-11 w-11 object-contain" />
+              </a>
+              <!-- Gojek -->
+              <a href="https://gofood.link/u/ykaDO" class="text-gray-600 hover:opacity-90" title="Gojek">
+                <img src="img/gojek.png" alt="Gojek" class="h-11 w-11 object-contain" />
+              </a>
+              <!-- Grab -->
+              <a href=" https://r.grab.com/g/6-20260112_125844_25b3e88f37ff4232ab08736b1da6511e_MEXMPS-6-C3W3AYVYVPKDEN" class="text-gray-600 hover:opacity-90" title="Grab">
+                <img src="img/grab.jpg" alt="Grab" class="h-11 w-11 object-contain" />
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-4"> Kritik Dan Saran</h4>
+            <p class="text-gray-600">
+              whatsapp: +6281358523305 <br />Gmail: lesehanrengganis@gmail.com <br/>
+            </p>
+          </div>
+        </div>
+        <div class="border-t mt-8 pt-6 text-center text-gray-500 text-sm">
+          <p>© 2025 Warung lesehan rengganis. Semua hak dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- ...existing HTML di atas... -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Variabel global ---
+        let cart = [];
+        const cartBtn = document.getElementById("cartBtn");
+        const cartModal = document.getElementById("cartModal");
+        const closeCartBtn = document.getElementById("closeCartBtn");
+        const cartItemsContainer = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+        const cartCount = document.getElementById("cartCount");
+        const checkoutBtn = document.getElementById("checkoutBtn");
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const shippingCostContainer = document.getElementById(
+          "shippingCostContainer"
+        );
+        const shippingCostElement = document.getElementById("shippingCost");
+        const calculateShippingBtn = document.getElementById(
+          "calculateShippingBtn"
+        );
+        const deliveryAddress = document.getElementById("deliveryAddress");
+        const discountContainer = document.getElementById("discountContainer");
+        const discountAmount = document.getElementById("discountAmount");
+
+        // Fungsi menghitung diskon otomatis (tiered tanpa perkalian)
+        function calculateDiscount(subtotal) {
+          if (subtotal >= 300000) return 10000;
+          if (subtotal >= 200000) return 7000;
+          if (subtotal >= 120000) return 5000;
+          if (subtotal >= 50000) return 3000;
+          return 0;
+        }
+
+        // Menghitung ongkir yang akan di terima
+        const shareLocationBtn = document.getElementById("shareLocationBtn");
+
+        // Lokasi toko (ganti dengan lokasi toko Anda)
+        const STORE_LAT = -7.98246;
+        const STORE_LNG = 112.63079;
+        let userLat = null;
+        let userLng = null;
+        let locationShared = false; // Flag untuk tracking share lokasi
+        let shippingCalculated = false; // Flag untuk tracking hitung ongkir
+
+        // Fungsi haversine untuk hitung jarak (km)
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+          const R = 6371;
+          const dLat = ((lat2 - lat1) * Math.PI) / 180;
+          const dLon = ((lon2 - lon1) * Math.PI) / 180;
+          const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos((lat1 * Math.PI) / 180) *
+              Math.cos((lat2 * Math.PI) / 180) *
+              Math.sin(dLon / 2) *
+              Math.sin(dLon / 2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+          return R * c;
+        }
+
+        // Event tombol share lokasi
+        shareLocationBtn.addEventListener("click", function () {
+          if (!navigator.geolocation) {
+            alert("Browser Anda tidak mendukung fitur lokasi.");
+            return;
+          }
+          shareLocationBtn.textContent = "Mengambil lokasi...";
+          shareLocationBtn.disabled = true;
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              userLat = position.coords.latitude;
+              userLng = position.coords.longitude;
+              locationShared = true; // Set flag ke true
+              const mapsUrl = `https://www.google.com/maps?q=${userLat},${userLng}`;
+              deliveryAddress.value = `Lokasi saya: ${mapsUrl}`;
+              shareLocationBtn.textContent = "Share Lokasi Saya ✓";
+              shareLocationBtn.disabled = false;
+              shareLocationBtn.classList.add("bg-green-500", "text-white");
+              alert(
+                "Lokasi anda berhasil diambil!! selanjutnya Silahkan mengklik 'hitung ongkir' dan menuju ke WhatsApp."
+              );
+            },
+            function (err) {
+              alert("Gagal mengambil lokasi. Pastikan izin lokasi diaktifkan.");
+              shareLocationBtn.textContent = "Share Lokasi Saya";
+              shareLocationBtn.disabled = false;
+              locationShared = false; // Reset flag jika gagal
+            }
+          );
+        });
+
+        function calculateShipping() {
+          if (userLat === null || userLng === null) {
+            alert("Mohon klik tombol 'share lokasi saya' terlebih dahulu");
+            return; // Default jika lokasi belum di-share
+          }
+          const distance = getDistanceFromLatLonInKm(
+            STORE_LAT,
+            STORE_LNG,
+            userLat,
+            userLng
+          );
+          if (distance <= 2) return 3000;
+          if (distance > 2 && distance <= 5) return 6000;
+          if (distance > 5 && distance <= 10) return 15000;
+          if (distance > 10)
+            return " (Lokasi tidak sesuai, admin akan menghitung ongkir secara manual, silahkan sharelock kembali via whatsapp)";
+        }
+
+        // Ganti event listener tombol Hitung Ongkir
+        calculateShippingBtn.addEventListener("click", function () {
+          const address = deliveryAddress.value.trim();
+          if (!address) {
+            alert(
+              "Silahkan klik tombol 'share lokasi saya' setelah itu klik 'hitung ongkir' "
+            );
+            return;
+          }
+          const shippingCost = calculateShipping();
+          shippingCostElement.textContent = `Rp ${shippingCost.toLocaleString(
+            "id-ID"
+          )}`;
+          shippingCostContainer.classList.remove("hidden");
+          const subtotal = cart.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          );
+          // Hitung diskon
+          const discount = calculateDiscount(subtotal);
+          if (discount > 0) {
+            discountContainer.classList.remove("hidden");
+            discountAmount.textContent = `- Rp ${discount.toLocaleString("id-ID")}`;
+          } else {
+            discountContainer.classList.add("hidden");
+          }
+          const finalTotal = subtotal - discount + shippingCost;
+          cartTotal.textContent = `Rp ${finalTotal.toLocaleString("id-ID")}`;
+          shippingCalculated = true; // Set flag ke true
+          calculateShippingBtn.textContent = "Hitung Ongkir ✓";
+          calculateShippingBtn.classList.add("bg-green-500", "text-white");
+        });
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+
+        // --- Cart Modal ---
+        cartBtn.addEventListener("click", function () {
+          cartModal.classList.remove("hidden");
+        });
+        closeCartBtn.addEventListener("click", function () {
+          cartModal.classList.add("hidden");
+        });
+
+        // --- Update Cart UI ---
+        function updateCart() {
+          cartItemsContainer.innerHTML = "";
+          if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `
+                  <div class="text-center py-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <p class="text-gray-500 mt-2">Keranjang masih kosong</p>
+                  </div>
+                `;
+            cartCount.classList.add("hidden");
+            checkoutBtn.disabled = true;
+            // Reset flag ketika keranjang kosong
+            locationShared = false;
+            shippingCalculated = false;
+            shareLocationBtn.textContent = "Share Lokasi Saya";
+            shareLocationBtn.classList.remove("bg-green-500", "text-white");
+            calculateShippingBtn.textContent = "Hitung Ongkir";
+            calculateShippingBtn.classList.remove("bg-green-500", "text-white");
+          } else {
+            let total = 0;
+            cart.forEach((item) => {
+              total += item.price * item.quantity;
+              const cartItemElement = document.createElement("div");
+              cartItemElement.className =
+                "cart-item mb-4 pb-4 border-b last:border-b-0";
+              cartItemElement.innerHTML = `
+                    <div class="flex justify-between mb-1">
+                      <span class="font-medium">${item.name}</span>
+                      <span class="text-orange-500">Rp ${item.price.toLocaleString(
+                        "id-ID"
+                      )}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <div class="flex items-center border rounded-lg overflow-hidden">
+                        <button class="decrement-item px-2 py-1 bg-gray-100 hover:bg-gray-200" data-id="${
+                          item.id
+                        }">-</button>
+                        <span class="quantity px-3">${item.quantity}</span>
+                        <button class="increment-item px-2 py-1 bg-gray-100 hover:bg-gray-200" data-id="${
+                          item.id
+                        }">+</button>
+                      </div>
+                      <span class="font-bold">Rp ${(
+                        item.price * item.quantity
+                      ).toLocaleString("id-ID")}</span>
+                    </div>
+                    <button class="remove-item text-red-500 text-sm mt-1" data-id="${
+                      item.id
+                    }">Hapus</button>
+                  `;
+              cartItemsContainer.appendChild(cartItemElement);
+            });
+            // Hitung diskon berdasarkan subtotal
+            const discount = calculateDiscount(total);
+            if (discount > 0) {
+              discountContainer.classList.remove("hidden");
+              discountAmount.textContent = `- Rp ${discount.toLocaleString("id-ID")}`;
+            } else {
+              discountContainer.classList.add("hidden");
+            }
+            cartTotal.textContent = `Rp ${total.toLocaleString("id-ID")}`;
+            shippingCostContainer.classList.add("hidden");
+            deliveryAddress.value = "";
+            const totalItems = cart.reduce(
+              (sum, item) => sum + item.quantity,
+              0
+            );
+            cartCount.textContent = totalItems;
+            cartCount.classList.remove("hidden");
+            checkoutBtn.disabled = false;
+
+            // Quantity buttons
+            document.querySelectorAll(".increment-item").forEach((button) => {
+              button.addEventListener("click", function () {
+                const itemId = this.getAttribute("data-id");
+                const item = cart.find((item) => item.id === itemId);
+                item.quantity += 1;
+                updateCart();
+              });
+            });
+            document.querySelectorAll(".decrement-item").forEach((button) => {
+              button.addEventListener("click", function () {
+                const itemId = this.getAttribute("data-id");
+                const item = cart.find((item) => item.id === itemId);
+                if (item.quantity > 1) {
+                  item.quantity -= 1;
+                } else {
+                  cart = cart.filter((item) => item.id !== itemId);
+                }
+                updateCart();
+              });
+            });
+            document.querySelectorAll(".remove-item").forEach((button) => {
+              button.addEventListener("click", function () {
+                const itemId = this.getAttribute("data-id");
+                cart = cart.filter((item) => item.id !== itemId);
+                updateCart();
+              });
+            });
+          }
+        }
+
+        // --- Checkout ---
+        checkoutBtn.addEventListener("click", function () {
+          if (cart.length === 0) return;
+          
+          // Validasi: User harus share lokasi dan hitung ongkir
+          if (!locationShared) {
+            alert("Silahkan klik tombol 'Share Lokasi Saya' terlebih dahulu!");
+            return;
+          }
+          if (!shippingCalculated) {
+            alert("Silahkan klik tombol 'Hitung Ongkir' terlebih dahulu!");
+            return;
+          }
+          
+          const shippingCost = calculateShipping();
+          if (shippingCost === -1) {
+            alert("Lokasi anda terlalu jauh, orderan ditolak.");
+            return;
+          }
+          let message = `Halo, saya ingin memesan:\n\n`; 
+          cart.forEach((item) => {
+            message += `- ${item.name} (${item.quantity}x) = Rp ${(
+              item.price * item.quantity
+            ).toLocaleString("id-ID")}\n`;
+          });
+          const subtotal = cart.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          );
+          const discount = calculateDiscount(subtotal);
+          message += `\nSubtotal: Rp ${subtotal.toLocaleString("id-ID")}\n`;
+          if (discount > 0) {
+            message += `Diskon: - Rp ${discount.toLocaleString("id-ID")}\n`;
+          }
+          message += `Ongkos Kirim: Rp ${shippingCost.toLocaleString(
+            "id-ID"
+          )}\n`;
+          message += `Total: Rp ${(subtotal - discount + shippingCost).toLocaleString(
+            "id-ID"
+          )}\n\n`;
+          message += `SEGALA BENTUK PENIPUAN/ORDERAN FIKTIF AKAN DI PROSES SECARA HUKUM YANG BERLAKU ${
+            deliveryAddress.value || ""
+          }\n\n`;
+          message += `JANGAN MENGUBAH PESAN INI, AGAR ADMIN DAPAT MEMPROSES ORDERAN ANDA\n\n`;
+          message += `Terima kasih!`;
+          const phoneNumber = "6281358523305";
+          const encodedMessage = encodeURIComponent(message);
+          const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+          window.open(whatsappUrl, "_blank");
+          cart = [];
+          updateCart();
+          cartModal.classList.add("hidden");
+        });
+
+        // --- Render Menu dari JSON ---
+        function renderMenu(menuData) {
+          const menuContainer = document.getElementById("menuContainer");
+          menuContainer.innerHTML = "";
+          // Promo di depan
+          menuData.sort((a, b) => (b.promo === true) - (a.promo === true));
+          menuData.forEach((item) => {
+            const card = document.createElement("div");
+            card.className =
+              "food-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300 flex flex-col";
+            card.setAttribute("data-category", item.category);
+            let labelHtml = "";
+            if (item.label || item.promo) {
+              labelHtml = `<span class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">${
+                item.label || "Promo"
+              }</span>`;
+            }
+            // Harga promo
+            let priceHtml = "";
+            if (item.promo && item.promo_price) {
+              priceHtml = `
+              <span class="text-gray-400 line-through text-sm mr-2">Rp ${item.price.toLocaleString(
+                "id-ID"
+              )}</span>
+              <span class="font-bold text-orange-500 text-lg">Rp ${item.promo_price.toLocaleString(
+                "id-ID"
+              )}</span>
+            `;
+            } else {
+              priceHtml = `<span class="font-bold text-orange-500">Rp ${item.price.toLocaleString(
+                "id-ID"
+              )}</span>`;
+            }
+            card.innerHTML = `
+            <div class="relative">
+              <img src="${item.img}" alt="${
+              item.name
+            }" class="w-full aspect-[4/3] object-cover" />
+              ${labelHtml}
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-lg mb-1">${item.name}</h4>
+              <p class="text-gray-600 text-sm mb-3">${item.desc}</p>
+              <div class="flex justify-between items-center">
+                ${priceHtml}
+                <button
+                  class="add-to-cart bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 rounded-full text-sm"
+                  data-id="${item.id}"
+                  data-name="${item.name}"
+                  data-price="${
+                    item.promo && item.promo_price
+                      ? item.promo_price
+                      : item.price
+                  }"
+                >+ Tambah</button>
+              </div>
+            </div>
+          `;
+            menuContainer.appendChild(card);
+          });
+          // Add to cart event
+          document.querySelectorAll(".add-to-cart").forEach((button) => {
+            button.addEventListener("click", function () {
+              const id = this.getAttribute("data-id");
+              const name = this.getAttribute("data-name");
+              const price = parseInt(this.getAttribute("data-price"));
+              const existingItem = cart.find((item) => item.id === id);
+              if (existingItem) {
+                existingItem.quantity += 1;
+              } else {
+                cart.push({ id, name, price, quantity: 1 });
+              }
+              // Reset flag ketika item ditambahkan
+              locationShared = false;
+              shippingCalculated = false;
+              shareLocationBtn.textContent = "Share Lokasi Saya";
+              shareLocationBtn.classList.remove("bg-green-500", "text-white");
+              calculateShippingBtn.textContent = "Hitung Ongkir";
+              calculateShippingBtn.classList.remove("bg-green-500", "text-white");
+              updateCart();
+              cartModal.classList.remove("hidden");
+            });
+          });
+        }
+
+        // --- Fetch menu data ---
+        fetch("menu.json")
+          .then((res) => res.json())
+          .then((data) => {
+            window.menuData = data;
+            renderMenu(data);
+          });
+
+        // --- Category filtering ---
+        categoryButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            categoryButtons.forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
+            const category = this.textContent.trim().toLowerCase();
+            let filtered = window.menuData || [];
+            if (category !== "semua menu") {
+              filtered = filtered.filter((item) =>
+                item.category
+                  .replace(/-/g, " ")
+                  .toLowerCase()
+                  .includes(category)
+              );
+            }
+            renderMenu(filtered);
+          });
+        });
+
+        // --- Search functionality ---
+        function performSearch() {
+          const query = searchInput.value.toLowerCase();
+          let filtered = window.menuData || [];
+          filtered = filtered.filter((item) =>
+            item.name.toLowerCase().includes(query)
+          );
+          renderMenu(filtered);
+        }
+        searchButton.addEventListener("click", performSearch);
+        searchInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") performSearch();
+        });
+
+        // --- Inisialisasi Cart ---
+        updateCart();
+      });
+    </script>
+    <!-- ...existing HTML di bawah... -->
+  </body>
+</html>
